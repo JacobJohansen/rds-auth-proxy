@@ -1,4 +1,4 @@
-module github.com/jacobjohanse/rds-auth-proxy
+module github.com/JacobJohansen/rds-auth-proxy
 
 go 1.14
 
