@@ -2,9 +2,9 @@ package config
 
 import (
 	"context"
-	"github.com/mothership/rds-auth-proxy/pkg/aws"
-	"github.com/mothership/rds-auth-proxy/pkg/log"
-	"github.com/mothership/rds-auth-proxy/pkg/pg"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/aws"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/log"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/pg"
 	"github.com/spf13/viper"
 	"strings"
 )

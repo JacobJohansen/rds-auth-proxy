@@ -3,8 +3,8 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/mothership/rds-auth-proxy/pkg/cert"
-	"github.com/mothership/rds-auth-proxy/pkg/file"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/cert"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/file"
 	"github.com/spf13/cobra"
 )
 

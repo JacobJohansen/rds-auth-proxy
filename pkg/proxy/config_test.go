@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	. "github.com/mothership/rds-auth-proxy/pkg/proxy"
+	. "github.com/JacobJohansen/rds-auth-proxy/pkg/proxy"
 )
 
 func TestConfigOptionErrors(t *testing.T) {

@@ -6,7 +6,7 @@ import (
 	"net"
 	"sync"
 
-	"github.com/mothership/rds-auth-proxy/pkg/log"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/log"
 	"go.uber.org/zap"
 )
 

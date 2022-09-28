@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/mothership/rds-auth-proxy/pkg/aws"
-	"github.com/mothership/rds-auth-proxy/pkg/config"
-	"github.com/mothership/rds-auth-proxy/pkg/log"
-	"github.com/mothership/rds-auth-proxy/pkg/proxy"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/aws"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/config"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/log"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/proxy"
 	"github.com/spf13/cobra"
 	"go.uber.org/zap"
 )

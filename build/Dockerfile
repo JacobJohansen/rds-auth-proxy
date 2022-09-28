@@ -1,5 +1,5 @@
 # syntax = docker/dockerfile:1.0-experimental
-FROM golang:1.16.0 as builder
+FROM golang:1.18.6 as builder
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates gawk

@@ -3,7 +3,7 @@ package config_test
 import (
 	"context"
 	"github.com/aws/aws-sdk-go-v2/service/redshift/types"
-	"github.com/mothership/rds-auth-proxy/pkg/aws"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/aws"
 )
 
 type mockRedshiftClient struct {

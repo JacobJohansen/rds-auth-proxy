@@ -8,8 +8,8 @@ import (
 	"time"
 
 	pgproto3 "github.com/jackc/pgproto3/v2"
-	"github.com/mothership/rds-auth-proxy/pkg/log"
-	"github.com/mothership/rds-auth-proxy/pkg/pg"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/log"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/pg"
 	"go.uber.org/zap"
 )
 

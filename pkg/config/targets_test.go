@@ -3,7 +3,7 @@ package config_test
 import (
 	"testing"
 
-	. "github.com/mothership/rds-auth-proxy/pkg/config"
+	. "github.com/JacobJohansen/rds-auth-proxy/pkg/config"
 )
 
 func TestTargetGetHost(t *testing.T) {

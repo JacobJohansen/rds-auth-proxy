@@ -12,9 +12,9 @@ builds:
     - amd64
   ldflags:
     - "-s -w"
-    - "-X github.com/mothership/rds-auth-proxy/cmd.version={{.Version}}"
-    - "-X github.com/mothership/rds-auth-proxy/cmd.commit={{.Commit}}"
-    - "-X github.com/mothership/rds-auth-proxy/cmd.date={{.Date}}"
+    - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.version={{.Version}}"
+    - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.commit={{.Commit}}"
+    - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.date={{.Date}}"
   hooks:
     post: 
       - gon build/signing-config-amd.json
@@ -27,9 +27,9 @@ builds:
     - arm64
   ldflags:
     - "-s -w"
-    - "-X github.com/mothership/rds-auth-proxy/cmd.version={{.Version}}"
-    - "-X github.com/mothership/rds-auth-proxy/cmd.commit={{.Commit}}"
-    - "-X github.com/mothership/rds-auth-proxy/cmd.date={{.Date}}"
+    - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.version={{.Version}}"
+    - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.commit={{.Commit}}"
+    - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.date={{.Date}}"
   hooks:
     post: 
       - gon build/signing-config-arm.json
@@ -44,9 +44,9 @@ builds:
     - arm64
   ldflags:
     - "-s -w"
-    - "-X github.com/mothership/rds-auth-proxy/cmd.version={{.Version}}"
-    - "-X github.com/mothership/rds-auth-proxy/cmd.commit={{.Commit}}"
-    - "-X github.com/mothership/rds-auth-proxy/cmd.date={{.Date}}"
+    - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.version={{.Version}}"
+    - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.commit={{.Commit}}"
+    - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.date={{.Date}}"
 checksum:
   name_template: 'checksums.txt'
 snapshot:

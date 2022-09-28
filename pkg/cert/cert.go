@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mothership/rds-auth-proxy/pkg/file"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/file"
 )
 
 // GenerateSelfSignedCert creates a self signed RSA cert and returns it

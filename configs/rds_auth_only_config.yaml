@@ -27,14 +27,3 @@ upstream_proxies:
     ssl:
       mode: "require"
     aws_auth_only: true
-
-## 
-# Target configuration
-#
-# This is where you can specify SSL settings for the upstream
-# (non-RDS) databases 
-#
-# RDS databases are added automatically at runtime.
-targets:
-  postgres:
-    host: postgres:5432

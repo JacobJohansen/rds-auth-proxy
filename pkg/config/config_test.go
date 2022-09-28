@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	. "github.com/mothership/rds-auth-proxy/pkg/config"
-	"github.com/mothership/rds-auth-proxy/pkg/pg"
+	. "github.com/JacobJohansen/rds-auth-proxy/pkg/config"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/pg"
 )
 
 func TestProxyConfigLoad(t *testing.T) {

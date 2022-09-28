@@ -7,8 +7,8 @@ import (
 	"net"
 
 	pgproto3 "github.com/jackc/pgproto3/v2"
-	"github.com/mothership/rds-auth-proxy/pkg/cert"
-	"github.com/mothership/rds-auth-proxy/pkg/pg"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/cert"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/pg"
 )
 
 // Credentials represents connection details to an upstream database or proxy

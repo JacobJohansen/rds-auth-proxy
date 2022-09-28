@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/mothership/rds-auth-proxy/pkg/file"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/file"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	corev1client "k8s.io/client-go/kubernetes/typed/core/v1"

@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/mothership/rds-auth-proxy/pkg/aws"
-	"github.com/mothership/rds-auth-proxy/pkg/log"
-	"github.com/mothership/rds-auth-proxy/pkg/pg"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/aws"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/log"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/pg"
 	"go.uber.org/zap"
 )
 
@@ -66,6 +66,7 @@ func RefreshRedshiftTargets(ctx context.Context, cfg *ConfigFile, redshiftClient
 		redshiftTargets[target.Name] = target
 	}
 	cfg.RedshiftTargets = redshiftTargets
+
 	cfg.RefreshHostMap()
 	return err
 }

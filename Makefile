@@ -6,7 +6,7 @@ PRIVATE_KEY_PATH?=$(CERT_DIR)/selfsigned_key.pem
 AC_USERNAME?=
 DEBUG_TARGET?=rds-auth-proxy-macos-amd
 
-DOCKER_REPO?=ghcr.io/mothership/rds-auth-proxy
+DOCKER_REPO?=ghcr.io/JacobJohansen/rds-auth-proxy
 DOCKER_TAG?=dev
 
 .PHONY: debug
