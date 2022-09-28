@@ -1,9 +1,8 @@
 package main
 
 import (
+	"github.com/JacobJohansen/rds-auth-proxy/cmd"
 	"os"
-
-	"github.com/mothership/rds-auth-proxy/cmd"
 )
 
 func main() {

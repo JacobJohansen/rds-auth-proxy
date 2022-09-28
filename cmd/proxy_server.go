@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/mothership/rds-auth-proxy/pkg/aws"
-	"github.com/mothership/rds-auth-proxy/pkg/config"
-	"github.com/mothership/rds-auth-proxy/pkg/log"
-	"github.com/mothership/rds-auth-proxy/pkg/proxy"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/aws"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/config"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/log"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/proxy"
 	"github.com/spf13/cobra"
 	"go.uber.org/zap"
 )
@@ -31,7 +31,11 @@ var proxyServerCommand = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		cfg, err := config.LoadConfig(ctx, rdsClient, filepath)
+		redshiftClient, err := aws.NewRedshiftClient(ctx)
+		if err != nil {
+			return err
+		}
+		cfg, err := config.LoadConfig(ctx, rdsClient, redshiftClient, filepath)
 		if err != nil {
 			return err
 		}
@@ -56,7 +60,7 @@ var proxyServerCommand = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		config.RefreshTargets(ctx, &cfg, rdsClient, 1*time.Minute)
+		config.RefreshTargets(ctx, &cfg, rdsClient, redshiftClient, 1*time.Minute)
 		err = manager.Start(ctx)
 		return err
 	},

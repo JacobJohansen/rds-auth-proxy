@@ -19,17 +19,17 @@ const (
 
 // DBInstanceResult is wrapper around a DBInstance or error
 // as a result of listing RDS Instances
-type DBInstanceResult struct {
-	Instance types.DBInstance
+type DBClusterResult struct {
+	Cluster types.DBCluster
 	Error    error
 }
 
 // RDSClient is our wrapper around the RDS library, allows us to
 // mock this for testing
 type RDSClient interface {
-	GetPostgresInstances(ctx context.Context) <-chan DBInstanceResult
+	GetPostgresInstances(ctx context.Context) <-chan DBClusterResult
 	NewAuthToken(ctx context.Context, host, region, user string) (string, error)
-	RegionForInstance(inst types.DBInstance) (string, error)
+	RegionForInstance(inst types.DBCluster) (string, error)
 }
 
 type rdsClient struct {
@@ -48,8 +48,8 @@ func NewRDSClient(ctx context.Context) (RDSClient, error) {
 
 // GetPostgresInstances grabs all db instances filtered by engine "postgres" and publishes
 // them to the result channel
-func (r *rdsClient) GetPostgresInstances(ctx context.Context) <-chan DBInstanceResult {
-	resChan := make(chan DBInstanceResult, 1)
+func (r *rdsClient) GetPostgresInstances(ctx context.Context) <-chan DBClusterResult {
+	resChan := make(chan DBClusterResult, 1)
 	go func() {
 		defer close(resChan)
 		paginator := r.rdsPaginator([]types.Filter{
@@ -61,21 +61,21 @@ func (r *rdsClient) GetPostgresInstances(ctx context.Context) <-chan DBInstanceR
 		for paginator.HasMorePages() {
 			page, err := paginator.NextPage(ctx)
 			if err != nil {
-				resChan <- DBInstanceResult{Error: err}
+				resChan <- DBClusterResult{Error: err}
 				return
 			}
-			for _, d := range page.DBInstances {
-				resChan <- DBInstanceResult{Instance: d}
+			for _, d := range page.DBClusters {
+				resChan <- DBClusterResult{Cluster: d}
 			}
 		}
 	}()
 	return resChan
 }
 
-func (r *rdsClient) rdsPaginator(filters []types.Filter) (paginator *rds.DescribeDBInstancesPaginator) {
-	paginator = rds.NewDescribeDBInstancesPaginator(r.svc, &rds.DescribeDBInstancesInput{
+func (r *rdsClient) rdsPaginator(filters []types.Filter) (paginator *rds.DescribeDBClustersPaginator) {
+	paginator = rds.NewDescribeDBClustersPaginator(r.svc, &rds.DescribeDBClustersInput{
 		Filters: filters,
-	}, func(o *rds.DescribeDBInstancesPaginatorOptions) {
+	}, func(o *rds.DescribeDBClustersPaginatorOptions) {
 		o.Limit = 100
 	})
 	return
@@ -85,8 +85,8 @@ func (r *rdsClient) NewAuthToken(ctx context.Context, host, region, user string)
 	return auth.BuildAuthToken(ctx, host, region, user, r.cfg.Credentials)
 }
 
-func (r *rdsClient) RegionForInstance(inst types.DBInstance) (string, error) {
-	arn, err := arn.Parse(*inst.DBInstanceArn)
+func (r *rdsClient) RegionForInstance(inst types.DBCluster) (string, error) {
+	arn, err := arn.Parse(*inst.DBClusterArn)
 	if err != nil {
 		return "", err
 	}

@@ -7,8 +7,8 @@ import (
 	"net"
 
 	pgproto3 "github.com/jackc/pgproto3/v2"
-	"github.com/mothership/rds-auth-proxy/pkg/cert"
-	"github.com/mothership/rds-auth-proxy/pkg/pg"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/cert"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/pg"
 )
 
 // Credentials represents connection details to an upstream database or proxy
@@ -47,6 +47,7 @@ type Config struct {
 	CredentialInterceptor    CredentialInterceptor
 	QueryInterceptor         QueryInterceptor
 	Mode                     Mode
+	AwsAuthOnly				 bool `default:false`
 }
 
 // QueryInterceptor provides a way to define custom behavior for handling messages
@@ -78,6 +79,13 @@ func WithListenAddress(addr string) Option {
 		}
 
 		c.ListenAddress = listenAddr
+		return nil
+	}
+}
+
+func WithAWSAuthOnly(aws_auth_only bool) Option {
+	return func(c *Config) error {
+		c.AwsAuthOnly = aws_auth_only
 		return nil
 	}
 }

@@ -6,8 +6,8 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go-v2/service/rds/types"
-	"github.com/mothership/rds-auth-proxy/pkg/aws"
-	. "github.com/mothership/rds-auth-proxy/pkg/config"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/aws"
+	. "github.com/JacobJohansen/rds-auth-proxy/pkg/config"
 )
 
 func TestFetchRDSTargets(t *testing.T) {

@@ -2,7 +2,7 @@
     "source" : [
         "./dist/rds-auth-proxy-macos-amd_darwin_amd64/rds-auth-proxy"
     ],
-    "bundle_id" : "com.mothership.rds-auth-proxy",
+    "bundle_id" : "com.JacobJohansen.rds-auth-proxy",
     "apple_id": {
         "password":  "@env:AC_PASSWORD"
     },

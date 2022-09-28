@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/jackc/pgproto3/v2"
-	"github.com/mothership/rds-auth-proxy/pkg/pg"
-	"github.com/mothership/rds-auth-proxy/pkg/proxy"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/pg"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/proxy"
 )
 
 // BasicInterceptor just echoes back the query to the backend.

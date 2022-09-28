@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/mothership/rds-auth-proxy/pkg/pg"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/pg"
 )
 
 // SSL represents settings for upstream (RDS instances, pg instances)

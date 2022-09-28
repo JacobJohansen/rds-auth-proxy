@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/mothership/rds-auth-proxy/pkg/aws"
-	"github.com/mothership/rds-auth-proxy/pkg/log"
-	"github.com/mothership/rds-auth-proxy/pkg/pg"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/aws"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/log"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/pg"
 	"go.uber.org/zap"
 )
 
@@ -26,32 +26,33 @@ func RefreshRDSTargets(ctx context.Context, cfg *ConfigFile, rdsClient aws.RDSCl
 			err = result.Error
 			continue
 		}
-		d := result.Instance
+		d := result.Cluster
+
 		if d.Endpoint == nil {
-			log.Warn("db instance missing endpoint, skipping", zap.String("name", *d.DBInstanceIdentifier))
+			log.Warn("db instance missing endpoint, skipping", zap.String("name", *d.DBClusterIdentifier))
 			continue
 		}
 
 		if tmpErr := cfg.Proxy.ACL.IsAllowed(d.TagList); tmpErr != nil {
-			log.Debug("db instance not allowed by acl", zap.String("name", *d.DBInstanceIdentifier))
+			log.Debug("db instance not allowed by acl", zap.String("name", *d.DBClusterIdentifier))
 			continue
 		}
 
 		region, err := rdsClient.RegionForInstance(d)
 		if err != nil {
-			log.Error("failed to detect db region, skipping", zap.Error(err), zap.String("name", *d.DBInstanceIdentifier))
+			log.Error("failed to detect db region, skipping", zap.Error(err), zap.String("name", *d.DBClusterIdentifier))
 			continue
 		}
 
-		if !d.IAMDatabaseAuthenticationEnabled {
-			log.Warn("db instance does not have IAM auth enabled, skipping", zap.String("name", *d.DBInstanceIdentifier))
+		if !*d.IAMDatabaseAuthenticationEnabled {
+			log.Warn("db instance does not have IAM auth enabled, skipping", zap.String("name", *d.DBClusterIdentifier))
 			continue
 		}
 
 		target := &Target{
-			Name:            *d.DBInstanceIdentifier,
-			Host:            fmt.Sprintf("%+v:%+v", *d.Endpoint.Address, strconv.FormatInt(int64(d.Endpoint.Port), 10)),
-			DefaultDatabase: d.DBName,
+			Name:            *d.DBClusterIdentifier,
+			Host:            fmt.Sprintf("%+v:%+v", *d.Endpoint, strconv.FormatInt(int64(*d.Port), 10)),
+			DefaultDatabase: d.DatabaseName,
 			SSL: SSL{
 				Mode:                  pg.SSLVerifyFull,
 				ClientCertificatePath: cfg.Proxy.SSL.ClientCertificatePath,

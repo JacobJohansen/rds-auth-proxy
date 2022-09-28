@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	. "github.com/mothership/rds-auth-proxy/pkg/config"
-	"github.com/mothership/rds-auth-proxy/pkg/pg"
+	. "github.com/JacobJohansen/rds-auth-proxy/pkg/config"
+	"github.com/JacobJohansen/rds-auth-proxy/pkg/pg"
 )
 
 func TestProxyConfigLoad(t *testing.T) {
@@ -28,7 +28,7 @@ func TestProxyConfigLoad(t *testing.T) {
 		},
 	}
 	for idx, test := range cases {
-		pcfg, err := LoadConfig(context.Background(), &mockRDSClient{}, test.FileName)
+		pcfg, err := LoadConfig(context.Background(), &mockRDSClient{}, &mockRedshiftClient{}, test.FileName)
 		if !errorContains(err, test.Error) {
 			t.Errorf("[Case %d] expected %+v, got %+v", idx, test.Error, err)
 		}
