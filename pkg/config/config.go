@@ -11,7 +11,7 @@ import (
 
 const (
 	defaultKubeConfigPath = "$HOME/.kube/config"
-	defaultListenAddr     = "0.0.0.0:8000"
+	defaultListenAddr     = "127.0.0.1:5433"
 )
 
 type ConfigFile struct {
@@ -64,9 +64,29 @@ func loadConfig(filepath string) (config ConfigFile, err error) {
 	}
 	err = viper.ReadInConfig()
 	if err != nil {
-		return
+		err = nil
+		config = ConfigFile{
+			Proxy:           Proxy{
+				ListenAddr: "127.0.0.1:5433",
+				SSL: ServerSSL{Enabled: false},
+				ACL: ACL{
+					AllowedRDSTags: TagList{},
+					BlockedRDSTags: TagList{},
+				},
+			},
+			ProxyTargets: map[string]*ProxyTarget{
+				"default": &ProxyTarget{
+					Name:        "default",
+					Host:        "rds-proxy-server:8000",
+					SSL:         SSL{ Mode: pg.SSLRequired},
+					PortForward: nil,
+					AwsAuthOnly: true,
+				},
+			},
+		}
+	} else {
+		err = viper.Unmarshal(&config)
 	}
-	err = viper.Unmarshal(&config)
 	if err != nil {
 		return
 	}

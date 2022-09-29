@@ -27,6 +27,10 @@ var proxyClientCommand = &cobra.Command{
 	Short: "Launches the localhost proxy",
 	Long:  `Runs a localhost proxy service in-cluster for connecting to RDS.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if os.Getenv("AWS_REGION") == "" {
+			os.Setenv("AWS_REGION", "us-east-1")
+		}
+
 		logCfg := zap.NewDevelopmentConfig()
 		logCfg.Level = zap.NewAtomicLevelAt(zapcore.InfoLevel)
 		logCfg.Development = false
