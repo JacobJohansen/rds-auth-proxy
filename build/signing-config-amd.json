@@ -4,9 +4,10 @@
     ],
     "bundle_id" : "com.JacobJohansen.rds-auth-proxy",
     "apple_id": {
-        "password":  "@env:AC_PASSWORD"
+        "username": "@env:AC_USERNAME",
+        "password":  "@keychain:ac_password"
     },
     "sign" :{
-        "application_identity" : "Developer ID Application: Mothership Technologies, Inc."
+        "application_identity" : "Developer ID Application: Jacob Johansen (ANUT6RHZ5S)"
     }
 }
