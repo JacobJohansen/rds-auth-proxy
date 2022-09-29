@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.2.1 (2022-09-29)
+
+---
+
+## v0.2.0 (2022-09-29)
+
+### Features
+
+- Add interceptors to proxy (1de47f4)
+
+### Bug Fixes
+
+- warn logging should log at warn (b2e0203)
+
+---
+
 ## v0.1.1 (2021-09-24)
 
 ### Bug Fixes
@@ -23,4 +39,3 @@
 - fix release script (04f419d)
 
 ---
-
