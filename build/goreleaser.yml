@@ -22,6 +22,7 @@ builds:
     - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.date={{.Date}}"
 - env:
     - CGO_ENABLED=0
+  id: rds-auth-proxy-macos-amd
   goos:
     - darwin
   goarch:
@@ -36,6 +37,7 @@ builds:
       - gon build/signing-config-amd.json
 - env:
     - CGO_ENABLED=0
+  id: rds-auth-proxy-macos-arm
   goos:
     - darwin
   goarch:
