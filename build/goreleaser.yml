@@ -65,7 +65,7 @@ archives:
     - rds-auth-proxy
     - rds-auth-proxy-macos-arm
     - rds-auth-proxy-macos-amd
-  format: tar.gz 
+  format: tar.gz
   name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
   format_overrides:
     - goos: windows

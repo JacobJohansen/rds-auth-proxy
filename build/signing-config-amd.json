@@ -1,6 +1,6 @@
 {
     "source" : [
-        "./dist/rds-auth-proxy-macos-amd_darwin_amd64/rds-auth-proxy"
+        "./dist/rds-auth-proxy-macos-amd_darwin_amd64_v1/rds-auth-proxy"
     ],
     "bundle_id" : "com.github.JacobJohansen.rds-auth-proxy",
     "apple_id": {
