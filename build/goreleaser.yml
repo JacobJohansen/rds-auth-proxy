@@ -1,7 +1,4 @@
-before:
-  hooks:
-    - go mod tidy
-project_name: rds-auth-proxy 
+project_name: rds-auth-proxy
 builds:
 - env:
     - CGO_ENABLED=0

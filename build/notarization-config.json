@@ -1,15 +1,15 @@
 {
     "apple_id": {
       "username": "@env:AC_USERNAME",
-      "password":  "@keychain:ac_password"
+      "password":  "@env:AC_PASSWORD"
     },
     "notarize": [
         {
           "path": "./dist/rds-auth-proxy_darwin_amd64.zip",
-          "bundle_id": "com.JacobJohansen.rds-auth-proxy"
+          "bundle_id" : "com.github.JacobJohansen.rds-auth-proxy"
         }, {
           "path": "./dist/rds-auth-proxy_darwin_arm64.zip",
-          "bundle_id": "com.JacobJohansen.rds-auth-proxy"
-        }
+          "bundle_id" : "com.github.JacobJohansen.rds-auth-proxy"
+      }
     ]
 }
