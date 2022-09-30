@@ -1,3 +1,6 @@
+before:
+  hooks:
+    - go mod tidy
 project_name: rds-auth-proxy
 builds:
 - env:
@@ -12,6 +15,9 @@ builds:
     - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.version={{.Version}}"
     - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.commit={{.Commit}}"
     - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.date={{.Date}}"
+  hooks:
+    post:
+      - gon build/signing-config-amd.json
 - env:
     - CGO_ENABLED=0
   id: rds-auth-proxy-macos-arm
@@ -24,6 +30,9 @@ builds:
     - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.version={{.Version}}"
     - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.commit={{.Commit}}"
     - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.date={{.Date}}"
+  hooks:
+    post:
+      - gon build/signing-config-arm.json
 - env: 
     - CGO_ENABLED=0
   id: rds-auth-proxy
@@ -66,15 +75,3 @@ release:
     - distribution 
 changelog:
   skip: true
-signs:
-  - signature: "${artifact}.dmg"
-    ids:
-      - rds-auth-proxy-macos-arm
-      - rds-auth-proxy-macos-amd
-    # you'll need to have gon on PATH
-    cmd: gon
-    # you can follow the gon docs to properly create the gon.hcl config file:
-    # https://github.com/mitchellh/gon
-    args:
-      - ./build/notorization-config.json
-    artifacts: all
