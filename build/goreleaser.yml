@@ -5,11 +5,21 @@ project_name: rds-auth-proxy
 builds:
 - env:
     - CGO_ENABLED=0
-  id: rds-auth-proxy-macos-amd
   goos:
     - darwin
+    - linux
+    - windows
   goarch:
     - amd64
+    - 386
+    - arm
+    - arm64
+  goamr:
+    - 6
+    - 7
+  ignore:
+    - goos: windows
+      goarch: arm
   ldflags:
     - "-s -w"
     - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.version={{.Version}}"
@@ -18,71 +28,28 @@ builds:
   hooks:
     post:
       - gon build/signing-config-amd.json
-- env:
-    - CGO_ENABLED=0
-  id: rds-auth-proxy-macos-arm
-  goos:
-    - darwin
-  goarch:
-    - arm64
-  ldflags:
-    - "-s -w"
-    - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.version={{.Version}}"
-    - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.commit={{.Commit}}"
-    - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.date={{.Date}}"
-  hooks:
-    post:
       - gon build/signing-config-arm.json
-- env: 
-    - CGO_ENABLED=0
-  id: rds-auth-proxy
-  goos:
-    - windows
-    - linux
-  goarch:
-    - amd64
-    - arm64
-  ldflags:
-    - "-s -w"
-    - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.version={{.Version}}"
-    - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.commit={{.Commit}}"
-    - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.date={{.Date}}"
 checksum:
-  name_template: 'checksums.txt'
+  name_template: '{{ .ProjectName }}_{{.Env.RELEASE_VERSION}}_checksums.txt'
 snapshot:
   name_template: "{{ .Tag }}-next"
 archives:
-- id: signing
-  builds:
-    - rds-auth-proxy-macos-arm
-    - rds-auth-proxy-macos-amd
-  format: zip
-  name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
-  files:
-    - none*
-- id: distribution
-  builds:
-    - rds-auth-proxy
-    - rds-auth-proxy-macos-arm
-    - rds-auth-proxy-macos-amd
-  format: tar.gz
-  name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
-  format_overrides:
-    - goos: windows
-      format: zip
-release:
-  ids:  
-    - distribution 
+  -
+    name_template: '{{ .ProjectName }}_{{.Env.RELEASE_VERSION}}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+    replacements:
+      darwin: darwin
+      linux: linux
+      386: 386
+      amd64: amd64
+    format_overrides:
+      - goos: windows
+        format: zip
 changelog:
   skip: true
 
 brews:
   -
     name: rds-auth-proxy
-
-    ids:
-      - rds-auth-proxy-macos-arm
-      - rds-auth-proxy-macos-amd
     # GitHub/GitLab repository to push the formula to
     # Gitea is not supported yet, but the support coming
     tap:
