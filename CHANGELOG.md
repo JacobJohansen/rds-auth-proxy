@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.2.10 (2022-09-30)
+
+---
+
 ## v0.2.9 (2022-09-30)
 
 ---
@@ -45,15 +49,5 @@
 ### Bug Fixes
 
 - warn logging should log at warn (b2e0203)
-
----
-
-## v0.1.1 (2021-09-24)
-
-### Bug Fixes
-
-- aurora instances are valid postgres instances (46b771d)
-- badge link for reportcard was bad (#10) (35ec1f8)
-- misspell in tests (2b17c8a)
 
 ---
