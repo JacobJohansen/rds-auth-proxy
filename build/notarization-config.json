@@ -5,7 +5,7 @@
     },
     "notarize": [
         {
-          "path": "./dist/rds-auth-proxy_darwin_amd64_v1.zip",
+          "path": "./dist/rds-auth-proxy_darwin_amd64.zip",
           "bundle_id" : "com.github.JacobJohansen.rds-auth-proxy"
         }, {
           "path": "./dist/rds-auth-proxy_darwin_arm64.zip",
