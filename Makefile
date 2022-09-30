@@ -17,12 +17,10 @@ debug:
 .PHONY: debug-release 
 debug-release:
 	AC_USERNAME=$(AC_USERNAME) goreleaser -f ./build/goreleaser.yml --snapshot --rm-dist
-	AC_USERNAME=$(AC_USERNAME) gon ./build/notorizing-config.json
 
 .PHONY: release 
 release:
 	AC_USERNAME=$(AC_USERNAME) goreleaser -f ./build/goreleaser.yml --rm-dist
-	AC_USERNAME=$(AC_USERNAME) gon ./build/notorizing-config.json
 
 gen-certs: debug
 	mkdir -p $(CERT_DIR) 

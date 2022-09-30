@@ -75,3 +75,56 @@ release:
     - distribution 
 changelog:
   skip: true
+
+brews:
+  -
+    name: rds-auth-proxy
+
+    # GitHub/GitLab repository to push the formula to
+    # Gitea is not supported yet, but the support coming
+    tap:
+      owner: JacobJohansen
+      name: homebrew-tap
+
+    # Allows you to set a custom download strategy.
+    # Default is empty.
+    #download_strategy: GitHubPrivateRepositoryReleaseDownloadStrategy
+
+    # Git author used to commit to the repository.
+    # Defaults are shown.
+    commit_author:
+      name: Jacob Johansen
+      email: johansenjuwp@gmail.com
+
+    # Folder inside the repository to put the formula.
+    # Default is the root folder.
+    folder: Formula
+
+    # Caveats for the user of your binary.
+    # Default is empty.
+    caveats: "Type 'rds-auth-proxy client' on your command line and let it handle aws rds iam authentication. This command currently only tested on macOS and Linux"
+
+    # Your app's homepage.
+    # Default is empty.
+    homepage: "https://github.com/JacobJohansen/rds-auth-proxy"
+
+    # Your app's description.
+    # Default is empty.
+    description: "The rds-auth-proxy client command lets you aws iam auth for postgres compatible rds instances."
+
+    # Packages that conflict with your package.
+
+    # Setting this will prevent goreleaser to actually try to commit the updated
+    # formula - instead, the formula file will be stored on the dist folder only,
+    # leaving the responsibility of publishing it to the user.
+    # Default is false.
+    skip_upload: false
+
+    # So you can `brew test` your formula.
+    # Default is empty.
+    test: |
+      system "#{bin}/rds-auth-proxy --version"
+    # Custom install script for brew.
+    # Default is 'bin.install "program"'.
+    install: |
+      bin.install "rds-auth-proxy"
