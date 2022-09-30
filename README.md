@@ -11,11 +11,11 @@
 <p align="center">
 </p>
 
-![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/mothership/rds-auth-proxy)
-![GitHub branch checks state](https://img.shields.io/github/checks-status/mothership/rds-auth-proxy/main)
-[![Go Report Card](https://goreportcard.com/badge/github.com/mothership/rds-auth-proxy)](https://goreportcard.com/report/github.com/mothership/rds-auth-proxy)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/jacobjohansen/rds-auth-proxy)
+![GitHub branch checks state](https://img.shields.io/github/checks-status/jacobjohansen/rds-auth-proxy/main)
+[![Go Report Card](https://goreportcard.com/badge/github.com/jacobjohansen/rds-auth-proxy)](https://goreportcard.com/report/github.com/jacobjohansen/rds-auth-proxy)
 
-A two-layer proxy for connecting into RDS postgres databases 
+A single or two-layer proxy for connecting into RDS postgres databases 
 based on IAM authentication. 
 
 This tool allows you to keep your databases firewalled off, 
@@ -29,6 +29,11 @@ will ever have to share or type a password.
 This pairs extremely well with a tool like [saml2aws](https://github.com/Versent/saml2aws)
 to ensure all AWS/database access uses temporary credentials.
 
+## Install
+### HomeBrew
+```bash
+brew install jacobjohansen/tap/rds-auth-proxy
+```
 ## Documentation
 
 End user documentation is available on our [project site](https://mothership.github.io/rds-auth-proxy/).
