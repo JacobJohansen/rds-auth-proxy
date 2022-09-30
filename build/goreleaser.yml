@@ -6,7 +6,6 @@ builds:
 - env:
     - CGO_ENABLED=0
   goos:
-    - darwin
     - linux
     - windows
   goarch:
@@ -22,10 +21,34 @@ builds:
     - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.version={{.Version}}"
     - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.commit={{.Commit}}"
     - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.date={{.Date}}"
-  hooks:
-    post:
-      - gon build/signing-config-amd.json
-      - gon build/signing-config-arm.json
+- env:
+      - CGO_ENABLED=0
+    goos:
+      - darwin
+    goarch:
+      - amd64
+    ldflags:
+      - "-s -w"
+      - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.version={{.Version}}"
+      - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.commit={{.Commit}}"
+      - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.date={{.Date}}"
+    hooks:
+      post:
+        - gon build/signing-config-amd.json
+- env:
+      - CGO_ENABLED=0
+    goos:
+      - darwin
+    goarch:
+      - arm64
+    ldflags:
+      - "-s -w"
+      - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.version={{.Version}}"
+      - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.commit={{.Commit}}"
+      - "-X github.com/JacobJohansen/rds-auth-proxy/cmd.date={{.Date}}"
+    hooks:
+      post:
+        - gon build/signing-config-arm.json
 checksum:
   name_template: '{{ .ProjectName }}_{{.Env.RELEASE_VERSION}}_checksums.txt'
 snapshot:
